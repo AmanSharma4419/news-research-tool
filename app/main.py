@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from app.db.qdrant import qdrant_client
 from app.api.routes.ingest import router as ingest_router
 from app.db.qdrant_setup import create_collection
+from langsmith import traceable
 
 
 @asynccontextmanager
@@ -23,7 +24,7 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-
+@traceable(name="news_ingestion_pipeline")
 @app.get("/health")
 async def health_check():
 

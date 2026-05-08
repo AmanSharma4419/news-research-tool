@@ -3,8 +3,9 @@ from langchain_core.documents import Document
 from app.services.loader_service import load_article
 from app.services.chunk_service import text_splitting
 from app.services.vector_store_service import get_vector_store
+from langsmith import traceable
 
-
+@traceable(name="ingest_urls_pipeline")
 def ingest_urls(urls: list):
 
     documents = []

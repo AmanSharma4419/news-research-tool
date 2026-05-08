@@ -1,6 +1,7 @@
 from trafilatura import fetch_url, extract
+from langsmith import traceable
 
-
+@traceable(name="load_article")
 def load_article(url: str):
 
     try:
