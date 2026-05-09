@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from app.db.qdrant import qdrant_client
 from app.api.routes.ingest import router as ingest_router
 from app.api.routes.search import router as retrieve_data
+from app.api.routes.ask import router as ask_router
 
 from app.db.qdrant_setup import create_collection
 from app.services.retrieval_service import retrieve_documents
@@ -52,4 +53,5 @@ async def qdb_status():
 
 app.include_router(ingest_router)
 app.include_router(retrieve_data)
+app.include_router(ask_router)
 
