@@ -6,7 +6,10 @@ from fastapi import FastAPI
 
 from app.db.qdrant import qdrant_client
 from app.api.routes.ingest import router as ingest_router
+from app.api.routes.search import router as retrieve_data
+
 from app.db.qdrant_setup import create_collection
+from app.services.retrieval_service import retrieve_documents
 from langsmith import traceable
 
 
@@ -29,7 +32,7 @@ app = FastAPI(
 @traceable(name="news_ingestion_pipeline")
 @app.get("/health")
 async def health_check():
-
+    retrieve_documents("what happend in iran",3)
     return {
         "status": "healthy",
         "service": "news-research-tool"
@@ -48,3 +51,5 @@ async def qdb_status():
 
 
 app.include_router(ingest_router)
+app.include_router(retrieve_data)
+
