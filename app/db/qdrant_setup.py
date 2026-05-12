@@ -12,7 +12,6 @@ def create_collection():
         collection.name
         for collection in collections
     ]
-
     if settings.QDRANT_COLLECTION not in collection_names:
 
         qdrant_client.create_collection(

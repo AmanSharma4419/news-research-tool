@@ -4,7 +4,6 @@ from app.services.rag_service import ask_question
 
 router = APIRouter()
 
-
 @router.get("/ask")
 async def ask(query: str):
 
